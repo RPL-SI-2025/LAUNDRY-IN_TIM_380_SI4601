@@ -21,6 +21,9 @@
             <a class="nav-link fw-bold" href="{{ url('pelacakan-status') }}">Pelacakan Status</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link fw-bold" href="{{ url('voucher') }}">Voucher</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link fw-bold" href="{{ route('profile') }}">Profil</a>
           </li>
           <li class="nav-item">
