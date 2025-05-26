@@ -8,7 +8,7 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('vouchers', function (Blueprint $table) {
+       Schema::create('vouchers', function (Blueprint $table) {
             $table->id();
             $table->string('code')->unique();
             $table->string('description');
@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('max_uses')->default(0);
             $table->integer('current_uses')->default(0);
             $table->timestamps();
-        });
+    });
     }
 
     public function down()

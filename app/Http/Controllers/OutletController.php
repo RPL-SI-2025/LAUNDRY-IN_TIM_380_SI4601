@@ -71,4 +71,11 @@ class OutletController extends Controller
                 ->with('error', 'Gagal menambahkan outlet: ' . $e->getMessage());
         }
     }
+
+    public function dashboard()
+    {
+        $user = auth()->user();
+        $outlet = \App\Models\Outlet::where('user_id', $user->id)->first();
+        return view('admin.home', compact('outlet'));
+    }
 }

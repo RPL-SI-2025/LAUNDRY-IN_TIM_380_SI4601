@@ -40,9 +40,7 @@ Route::get('/outlet', function () {
 // Admin Routes
 Route::middleware('auth')->group(function() {
     // Admin Home Routes
-    Route::get('/admin/home', function () {
-        return view('admin.home');  // Admin home page
-    })->name('admin.home');
+    Route::get('/admin/home', [App\Http\Controllers\OutletController::class, 'dashboard'])->name('admin.home');
 
     // Admin Home Outlet Routes
     Route::get('/admin/homeoutlet', function () {
@@ -83,6 +81,12 @@ Route::get('/admin/vouchers/export', [VoucherController::class, 'exportCsv'])->n
 Route::middleware('auth')->group(function() {
     // Admin voucher routes
     Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
+        Route::get('/vouchers', [VoucherController::class, 'index'])->name('vouchers.index');
+        Route::get('/vouchers/create', [VoucherController::class, 'create'])->name('vouchers.create');
+        Route::post('/vouchers', [VoucherController::class, 'store'])->name('vouchers.store');
+        Route::get('/vouchers/{voucher}/edit', [VoucherController::class, 'edit'])->name('vouchers.edit');
+        Route::put('/vouchers/{voucher}', [VoucherController::class, 'update'])->name('vouchers.update');
+        Route::delete('/vouchers/{voucher}', [VoucherController::class, 'destroy'])->name('vouchers.destroy');
         Route::resource('vouchers', VoucherController::class);
     });
     
