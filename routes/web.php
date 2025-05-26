@@ -5,7 +5,6 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PesananController;
 use App\Http\Controllers\OutletController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\CustomerController;
 
 // Public Routes
 Route::get('/', [AuthController::class, 'showLogin'])->name('login');
@@ -77,4 +76,3 @@ Route::middleware('auth')->group(function() {
     Route::get('/admin/invoice/{id}', [PesananController::class, 'show'])->name('admin.invoice');
 });
 
-Route::resource('customers', CustomerController::class);

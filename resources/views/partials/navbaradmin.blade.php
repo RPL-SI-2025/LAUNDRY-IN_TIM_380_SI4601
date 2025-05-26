@@ -14,9 +14,6 @@
           <li class="nav-item">
             <a class="nav-link fw-bold" href="{{ url('admin/home') }}">Home</a>
           </li>
-           <li class="nav-item">
-            <a class="nav-link fw-bold" href="{{ route('customers.index') }}">Data Customer</a>
-          </li>
           <li class="nav-item">
             <a class="nav-link fw-bold" href="{{ url('tampil-pesanan') }}">Data Pesanan</a>
           </li>
