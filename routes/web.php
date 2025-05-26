@@ -39,9 +39,7 @@ Route::get('/outlet', function () {
 // Admin Routes
 Route::middleware('auth')->group(function() {
     // Admin Home Routes
-    Route::get('/admin/home', function () {
-        return view('admin.home');  // Admin home page
-    })->name('admin.home');
+    Route::get('/admin/home', [App\Http\Controllers\OutletController::class, 'dashboard'])->name('admin.home');
 
     // Admin Home Outlet Routes
     Route::get('/admin/homeoutlet', function () {

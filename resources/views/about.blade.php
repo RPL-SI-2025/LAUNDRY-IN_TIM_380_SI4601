@@ -47,9 +47,9 @@
 <section class="py-5 bg-light">
     <div class="container">
       <h3 class="mb-5 fw-bold">Layanan</h3>
-      <div class="row g-4">
+      <div class="row g-4 justify-content-center">
         
-        <div class="col-md-4">
+        <div class="col-md-6">
           <div class="card h-100 shadow-sm border-0 text-center" style="background-color: #0E6A80; color: white; border-radius: 12px;">
             <img src="{{ asset('gambar/baju5.png') }}" class="card-img-top" alt="Satuan" style="height: 200px; object-fit: cover; border-top-left-radius: 12px; border-top-right-radius: 12px;">
             <div class="card-body text-center">
@@ -60,24 +60,13 @@
           </div>
         </div>
   
-        <div class="col-md-4">
+        <div class="col-md-6">
           <div class="card h-100 shadow-sm border-0 text-center" style="background-color: #0E6A80; color: white; border-radius: 12px;">
             <img src="{{ asset('gambar/baju6.png') }}" class="card-img-top" alt="Satuan" style="height: 200px; object-fit: cover; border-top-left-radius: 12px; border-top-right-radius: 12px;">
             <div class="card-body text-center">
               <h5 class="card-title fw-bold">Satuan</h5>
               <p class="card-text">Cocok untuk pakaian atau barang berbahan khusus seperti jas, gaun, dan bed cover. Menggunakan metode pencucian yang aman agar tetap terawat dan tahan lama.</p>
               <a href="https://wa.me/6281234567890?text=Halo%2C%20saya%20tertarik%20dengan%20layanan%20Satuan%20Laundry-In" class="btn btn-warning text-white">Pilih Laundry</a>
-            </div>
-          </div>
-        </div>
-  
-        <div class="col-md-4">
-          <div class="card h-100 shadow-sm border-0 text-center" style="background-color: #0E6A80; color: white; border-radius: 12px;">
-            <img src="{{ asset('gambar/baju7.png') }}" class="card-img-top" alt="Satuan" style="height: 200px; object-fit: cover; border-top-left-radius: 12px; border-top-right-radius: 12px;">
-            <div class="card-body text-center">
-              <h5 class="card-title fw-bold">Express</h5>
-              <p class="card-text">Solusi cepat bagi yang butuh pakaian bersih dalam waktu singkat. Dengan proses pencucian dan pengeringan modern, pakaian siap pakai hanya dalam beberapa jam.</p>
-              <a href="https://wa.me/6281234567890?text=Halo%2C%20saya%20tertarik%20dengan%20layanan%20Express%20Laundry-In" class="btn btn-warning text-white">Pilih Laundry</a>
             </div>
           </div>
         </div>
