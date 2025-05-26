@@ -30,4 +30,19 @@
     </div>
   </div>
 </div>
+
+ <div class="col-md-5">
+        <a href="{{ route('admin.vouchers.index') }}" class="text-decoration-none">
+          <div class="card shadow text-center p-4 h-100" style="background: #388896; color: #fff; border-radius: 18px; min-height: 320px;">
+            <div class="mb-3">
+              <i class="fas fa-ticket-alt" style="font-size: 3rem;"></i>
+            </div>
+            <h4 class="fw-bold mb-2">Kelola Voucher</h4>
+            <p style="font-size: 1rem;">Manajemen voucher diskon untuk pelanggan, termasuk pembuatan, pengeditan, dan pemantauan penggunaan voucher.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
 @endsection

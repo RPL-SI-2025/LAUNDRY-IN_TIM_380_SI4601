@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PesananController;
 use App\Http\Controllers\OutletController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\VoucherController;
 
 // Public Routes
 Route::get('/', [AuthController::class, 'showLogin'])->name('login');
@@ -76,3 +77,22 @@ Route::middleware('auth')->group(function() {
     Route::get('/admin/invoice/{id}', [PesananController::class, 'show'])->name('admin.invoice');
 });
 
+// Voucher
+
+Route::get('/admin/vouchers/export', [VoucherController::class, 'exportCsv'])->name('admin.vouchers.export');
+Route::middleware('auth')->group(function() {
+    // Admin voucher routes
+    Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
+        Route::get('/vouchers', [VoucherController::class, 'index'])->name('vouchers.index');
+        Route::get('/vouchers/create', [VoucherController::class, 'create'])->name('vouchers.create');
+        Route::post('/vouchers', [VoucherController::class, 'store'])->name('vouchers.store');
+        Route::get('/vouchers/{voucher}/edit', [VoucherController::class, 'edit'])->name('vouchers.edit');
+        Route::put('/vouchers/{voucher}', [VoucherController::class, 'update'])->name('vouchers.update');
+        Route::delete('/vouchers/{voucher}', [VoucherController::class, 'destroy'])->name('vouchers.destroy');
+        Route::resource('vouchers', VoucherController::class);
+    });
+    
+    // Customer voucher routes
+    Route::get('/vouchers', [VoucherController::class, 'showAvailable'])->name('vouchers.available');
+    Route::post('/vouchers/{voucher}/claim', [VoucherController::class, 'claim'])->name('vouchers.claim');
+});

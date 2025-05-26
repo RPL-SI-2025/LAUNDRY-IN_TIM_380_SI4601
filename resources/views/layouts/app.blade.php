@@ -9,6 +9,10 @@
   <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
 </head>
 <body>
+
+<li class="nav-item">
+    <a class="nav-link" href="{{ route('vouchers.available') }}">Voucher</a>
+</li>
   {{-- Navbar --}}
   @include('partials.navbar')
 

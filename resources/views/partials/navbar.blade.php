@@ -21,6 +21,9 @@
             <a class="nav-link fw-bold" href="{{ route('outlets.index') }}">Outlet</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link fw-bold" href="{{ route('vouchers.available') }}">Voucher</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link fw-bold" href="#">Lacak Pesanan</a>
           </li>
           <li class="nav-item">
