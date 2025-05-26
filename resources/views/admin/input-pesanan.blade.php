@@ -33,13 +33,16 @@
             <option selected disabled>Pilih Jenis Paket</option>
             <option value="Cuci Kiloan">Cuci Kiloan</option>
             <option value="Cuci Satuan">Cuci Satuan</option>
-            <option value="Cuci Express">Cuci Express</option>
           </select>
         </div>
 
         <div class="mb-3">
           <label for="waktu_kerja" class="form-label">Waktu Kerja</label>
-          <input type="text" class="form-control" id="waktu_kerja" name="waktu_kerja" required>
+          <select class="form-select" id="waktu_kerja" name="waktu_kerja" required>
+            <option selected disabled>Pilih Waktu Kerja</option>
+            <option value="3 Hari">3 Hari</option>
+            <option value="Express">Express</option>
+          </select>
         </div>
 
         <div class="mb-3">
