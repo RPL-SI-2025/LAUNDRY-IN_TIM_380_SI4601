@@ -24,17 +24,20 @@ Route::middleware('auth')->group(function() {
 });
 
 // Customer Routes
-Route::get('/home', function () {
-    return view('home');
-})->middleware('auth')->name('home');
+Route::middleware('auth')->group(function() {
+    Route::get('/home', function () {
+        return view('home');
+    })->name('home');
 
-Route::get('/about', function () {
-    return view('about');
-})->name('about');
+    Route::get('/about', function () {
+        return view('about');
+    })->name('about');
 
-Route::get('/outlet', function () {
-    return view('outlet');
-})->name('outlet');
+    // Outlet Routes
+    Route::get('/outlets', [OutletController::class, 'index'])->name('outlets.index');
+    Route::post('/outlets/{outlet}/favorite', [OutletController::class, 'toggleFavorite'])->name('outlets.toggleFavorite');
+    Route::get('/favorite-outlets', [OutletController::class, 'favoriteOutlets'])->name('favorite.outlets');
+});
 
 // Admin Routes
 Route::middleware('auth')->group(function() {

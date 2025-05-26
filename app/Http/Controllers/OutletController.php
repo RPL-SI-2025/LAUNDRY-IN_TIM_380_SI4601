@@ -15,6 +15,42 @@ class OutletController extends Controller
         return view('admin.input-outlet'); 
     }
 
+    // Method to display all outlets (for customers)
+    public function index()
+    {
+        $outlets = Outlet::all();
+        return view('outlet', compact('outlets'));
+    }
+
+    // Method to toggle favorite status for an outlet
+    public function toggleFavorite(Outlet $outlet)
+    {
+        $user = Auth::user();
+        $isFavorited = $user->favoriteOutlets()->where('outlet_id', $outlet->id)->exists();
+
+        if ($isFavorited) {
+            // Remove from favorites
+            $user->favoriteOutlets()->detach($outlet->id);
+            $message = 'Outlet removed from favorites.';
+            $favorited = false;
+        } else {
+            // Add to favorites
+            $user->favoriteOutlets()->attach($outlet->id);
+            $message = 'Outlet added to favorites.';
+            $favorited = true;
+        }
+
+        return response()->json(['success' => true, 'message' => $message, 'favorited' => $favorited]);
+    }
+
+    // Method to display favorite outlets for the authenticated user
+    public function favoriteOutlets()
+    {
+        $user = Auth::user();
+        $favoriteOutlets = $user->favoriteOutlets()->get();
+        return view('favorite-outlets', compact('favoriteOutlets'));
+    }
+
     // Method to store the outlet data
     public function store(Request $request)
     {

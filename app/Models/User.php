@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class User extends Authenticatable
 {
@@ -26,5 +27,10 @@ class User extends Authenticatable
     public function outlet()
     {
         return $this->hasOne(Outlet::class); // Relasi satu ke satu
+    }
+
+    public function favoriteOutlets(): BelongsToMany
+    {
+        return $this->belongsToMany(Outlet::class, 'user_favorite_outlets', 'user_id', 'outlet_id');
     }
 }

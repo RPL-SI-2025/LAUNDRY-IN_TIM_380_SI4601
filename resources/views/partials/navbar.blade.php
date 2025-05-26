@@ -18,7 +18,7 @@
             <a class="nav-link fw-bold" href="{{ url('about') }}">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link fw-bold" href="{{ url('outlet') }}">Outlet</a>
+            <a class="nav-link fw-bold" href="{{ route('outlets.index') }}">Outlet</a>
           </li>
           <li class="nav-item">
             <a class="nav-link fw-bold" href="#">Lacak Pesanan</a>
