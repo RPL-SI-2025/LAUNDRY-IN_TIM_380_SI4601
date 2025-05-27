@@ -7,6 +7,7 @@ use App\Http\Controllers\OutletController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VoucherController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\OrderHistoryController;
 
 // Public Routes
 Route::get('/', [AuthController::class, 'showLogin'])->name('login');
@@ -32,6 +33,10 @@ Route::middleware('auth')->group(function() {
     Route::get('/about', function () {
         return view('about');
     })->name('about');
+
+    // Order History Routes
+    Route::get('/order-history', [OrderHistoryController::class, 'index'])->name('order-history.index');
+    Route::get('/order-history/{order}', [OrderHistoryController::class, 'show'])->name('order-history.show');
 
     // Outlet Routes
     Route::get('/outlets', [OutletController::class, 'index'])->name('outlets.index');
