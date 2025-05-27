@@ -5,9 +5,9 @@
   <!-- Header with Search, Favorite Link, and Filter Toggle -->
   <div class="d-flex justify-content-between align-items-center mb-4">
     <div class="input-group" style="max-width: 300px;">
-      <input type="text" class="form-control" placeholder="Cari Outlet..." aria-label="Search">
-      <span class="input-group-text bg-white"><i class="fas fa-search"></i></span>
-    </div>
+        <input type="text" class="form-control" placeholder="Cari Outlet..." aria-label="Search">
+        <span class="input-group-text bg-white"><i class="fas fa-search"></i></span>
+      </div>
     <div class="d-flex align-items-center gap-2">
         {{-- Link to Favorite Outlets page --}}
         <a href="{{ route('favorite.outlets') }}" class="btn btn-light btn-sm rounded-circle d-flex align-items-center justify-content-center" style="color: #ff4d6d; width: 38px; height: 38px;">
@@ -15,7 +15,7 @@
         </a>
         {{-- Filter Toggle Button --}}
         <button class="btn btn-light btn-sm rounded-circle d-flex align-items-center justify-content-center" type="button" data-bs-toggle="offcanvas" data-bs-target="#filterOffcanvas" aria-controls="filterOffcanvas" style="width: 38px; height: 38px;">
-            <i class="fas fa-filter"></i>
+        <i class="fas fa-filter"></i>
         </button>
     </div>
   </div>

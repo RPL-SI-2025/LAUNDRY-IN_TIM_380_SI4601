@@ -17,7 +17,8 @@ class Outlet extends Model
         'nomor_layanan',
         'layanan_laundry',
         'deskripsi_outlet',
-        'image'
+        'image',
+        'layanan_detail'
     ];
 
     public function user()

@@ -26,9 +26,7 @@ Route::middleware('auth')->group(function() {
 
 // Customer Routes
 Route::middleware('auth')->group(function() {
-    Route::get('/home', function () {
-        return view('home');
-    })->name('home');
+    Route::get('/home', [OutletController::class, 'customerDashboard'])->name('home');
 
     Route::get('/about', function () {
         return view('about');
@@ -38,6 +36,7 @@ Route::middleware('auth')->group(function() {
     Route::get('/outlets', [OutletController::class, 'index'])->name('outlets.index');
     Route::post('/outlets/{outlet}/favorite', [OutletController::class, 'toggleFavorite'])->name('outlets.toggleFavorite');
     Route::get('/favorite-outlets', [OutletController::class, 'favoriteOutlets'])->name('favorite.outlets');
+    Route::get('/outlets/{outlet}', [OutletController::class, 'show'])->name('outlets.show');
 });
 
 // Admin Routes

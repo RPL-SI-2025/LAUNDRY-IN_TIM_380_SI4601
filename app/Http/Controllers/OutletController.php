@@ -114,4 +114,17 @@ class OutletController extends Controller
         $outlet = \App\Models\Outlet::where('user_id', $user->id)->first();
         return view('admin.home', compact('outlet'));
     }
+
+    // Dashboard customer: tampilkan semua outlet
+    public function customerDashboard()
+    {
+        $outlets = Outlet::all();
+        return view('home', compact('outlets'));
+    }
+
+    // Tampilkan detail outlet
+    public function show(Outlet $outlet)
+    {
+        return view('outlet-detail', compact('outlet'));
+    }
 }
