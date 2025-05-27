@@ -38,6 +38,9 @@ Route::middleware('auth')->group(function() {
     Route::get('/outlets', [OutletController::class, 'index'])->name('outlets.index');
     Route::post('/outlets/{outlet}/favorite', [OutletController::class, 'toggleFavorite'])->name('outlets.toggleFavorite');
     Route::get('/favorite-outlets', [OutletController::class, 'favoriteOutlets'])->name('favorite.outlets');
+
+    // Customer Lacak Pesanan Route
+    Route::get('/lacak-pesanan', [PesananController::class, 'customerLacakPesanan'])->name('customer.lacak-pesanan');
 });
 
 // Admin Routes
@@ -54,15 +57,14 @@ Route::middleware('auth')->group(function() {
     Route::get('/tampil-pesanan', [PesananController::class, 'index'])->name('input.pesanan');
     Route::get('/pesanan/detail/{id}', [PesananController::class, 'show'])->name('pesanan.detail');
     Route::delete('/pesanan/hapus/{id}', [PesananController::class, 'destroy'])->name('pesanan.hapus');
+    Route::put('/pesanan/update-status/{id}', [PesananController::class, 'updateStatus'])->name('pesanan.update-status');
 
     // Input Outlet Routes
     Route::get('/input-outlet', [OutletController::class, 'create'])->name('input.outlet');
     Route::post('/input-outlet', [OutletController::class, 'store'])->name('input.outlet.store');
 
     // Pelacakan Status Routes
-    Route::get('/pelacakan-status', function() {
-        return view('admin.pelacakan-status');
-    })->name('pelacakan.status');
+    Route::get('/pelacakan-status', [PesananController::class, 'pelacakanStatus'])->name('pelacakan.status');
 });
 
 // Input Pesanan Routes

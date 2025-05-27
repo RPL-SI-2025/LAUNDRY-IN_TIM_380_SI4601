@@ -17,5 +17,7 @@ class Pesanan extends Model
         'jenis_paket',
         'waktu_kerja',
         'berat_kg',
+        'status',
+        'payment_status'
     ];
 }
