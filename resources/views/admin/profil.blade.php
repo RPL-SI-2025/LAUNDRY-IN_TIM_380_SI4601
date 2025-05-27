@@ -71,12 +71,13 @@
                             <label class="form-label fw-semibold">Nama Outlet</label>
                             <input type="text" class="form-control" name="nama_outlet" value="{{ $outlet['nama_outlet'] }}">
                         </div>
-                        <div class="col-md-6">
-                            <label class="form-label fw-semibold">Layanan Outlet</label>
-                        </div>
                         <div class="col-12">
                             <label class="form-label fw-semibold">Deskripsi Outlet</label>
                             <textarea class="form-control" name="deskripsi_outlet" rows="3">{{ $outlet['deskripsi_outlet'] }}</textarea>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label fw-semibold">Jenis Layanan Laundry</label>
+                            <input type="text" class="form-control" name="layanan_laundry" value="{{ $outlet['layanan_laundry'] }}">
                         </div>
                         <div class="col-md-6">
                             <label class="form-label fw-semibold">Nomor Layanan</label>
@@ -137,16 +138,23 @@
                         <div class="col-md-6">
                             <div class="card bg-light border-0 rounded-3 p-3 h-100">
                                 <h6 class="text-muted">Layanan Outlet</h6>
-                                <p class="fw-semibold">
-                                    @php
-                                        $layananDetail = isset($outlet['layanan_detail']) && $outlet['layanan_detail'] ? json_decode($outlet['layanan_detail'], true) : [];
-                                    @endphp
-                                    @if(!empty($layananDetail))
-                                        {{ collect($layananDetail)->pluck('nama')->implode(', ') }}
-                                    @else
-                                        -
-                                    @endif
-                                </p>
+                                @php
+                                    $layananDetail = isset($outlet['layanan_detail']) && $outlet['layanan_detail'] ? json_decode($outlet['layanan_detail'], true) : [];
+                                @endphp
+                                @if(!empty($layananDetail))
+                                    <ul class="mb-0 ps-3">
+                                        @foreach($layananDetail as $layanan)
+                                            <li>
+                                                <strong>{{ $layanan['nama'] }}</strong>
+                                                @if(!empty($layanan['deskripsi']))
+                                                    <span class="text-muted">- {{ $layanan['deskripsi'] }}</span>
+                                                @endif
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                @else
+                                    <p class="fw-semibold">-</p>
+                                @endif
                             </div>
                         </div>
                         <div class="col-12">
