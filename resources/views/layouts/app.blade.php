@@ -68,6 +68,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('customer.lacak-pesanan') }}">Lacak Pesanan</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('order-history.index') }}">Riwayat Pesanan</a>
+                    </li>
                 </ul>
                 <div>
                     <form action="{{ route('logout') }}" method="POST" style="display: inline;">
