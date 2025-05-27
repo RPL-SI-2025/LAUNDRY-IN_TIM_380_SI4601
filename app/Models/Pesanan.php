@@ -18,6 +18,12 @@ class Pesanan extends Model
         'waktu_kerja',
         'berat_kg',
         'status',
-        'payment_status'
+        'payment_status',
+        'customer_id'
     ];
+
+    public function customer()
+    {
+        return $this->belongsTo(User::class, 'customer_id');
+    }
 }

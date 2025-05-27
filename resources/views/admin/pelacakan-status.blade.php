@@ -101,7 +101,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                <button type="submit" class="btn btn-primary">Update</button>
+                                <button type="button" class="btn btn-primary btn-confirm-update">Update</button>
                             </div>
                         </form>
                     </div>
@@ -110,6 +110,19 @@
             @endforeach
         </div>
     </div>
+</div>
+
+<!-- Modal Konfirmasi Kirim Notifikasi -->
+<div id="confirmModal" class="modal" tabindex="-1" style="display:none; background:rgba(0,0,0,0.5);">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" style="text-align:center;">
+      <div class="modal-body">
+        <h5>Kirim notifikasi kepada Customer<br>Pesanan Selesai?</h5>
+        <button id="noBtn" class="btn btn-secondary">No</button>
+        <button id="yesBtn" class="btn btn-danger">Yes</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <style>
@@ -154,5 +167,20 @@ function decrementBerat(id) {
         input.value = parseInt(input.value) - 1;
     }
 }
+
+document.querySelectorAll('.btn-confirm-update').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const form = btn.closest('form');
+        document.getElementById('confirmModal').style.display = 'block';
+        document.getElementById('yesBtn').onclick = function() {
+            document.getElementById('confirmModal').style.display = 'none';
+            form.submit();
+        };
+        document.getElementById('noBtn').onclick = function() {
+            document.getElementById('confirmModal').style.display = 'none';
+        };
+    });
+});
 </script>
 @endsection

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pesanan;
 use Illuminate\Http\Request;
+use App\Events\PesananStatusUpdated;
 
 class PesananController extends Controller
 {
@@ -117,6 +118,10 @@ class PesananController extends Controller
             'status' => $request->status,
             'payment_status' => $request->payment_status
         ]);
+
+        // Broadcast event ke customer
+        $message = 'Status pesanan Anda telah diperbarui menjadi: ' . $pesanan->status;
+        broadcast(new PesananStatusUpdated($pesanan, $message))->toOthers();
 
         return redirect()->route('pelacakan.status')->with('success', 'Status pesanan berhasil diperbarui!');
     }
