@@ -63,6 +63,8 @@ class PesananController extends Controller
             'jenis_paket' => $validated['jenis_paket'],
             'waktu_kerja' => $validated['waktu_kerja'],
             'berat_kg' => $validated['berat_kg'],
+            'status' => 'Pencucian', // Default status
+            'payment_status' => 'Belum Bayar' // Default payment status
         ]);
 
         return redirect()->route('input.pesanan')->with('success', 'Pesanan berhasil ditambahkan!');
@@ -71,20 +73,20 @@ class PesananController extends Controller
     // Menangani pembayaran
     public function processPayment(Request $request)
     {
-    // Validasi nominal pembayaran
-    $validated = $request->validate([
-        'nominal' => 'required|numeric|min:1',
-    ]);
+        // Validasi nominal pembayaran
+        $validated = $request->validate([
+            'nominal' => 'required|numeric|min:1',
+        ]);
 
-    // Temukan pesanan berdasarkan order_id
-    $pesanan = Pesanan::findOrFail($request->order_id);
+        // Temukan pesanan berdasarkan order_id
+        $pesanan = Pesanan::findOrFail($request->order_id);
 
-    // Update status pesanan menjadi 'dibayar'
-    $pesanan->status = 'dibayar';
-    $pesanan->save();
+        // Update status pesanan menjadi 'dibayar'
+        $pesanan->status = 'dibayar';
+        $pesanan->save();
 
-    // Redirect ke halaman invoice setelah pembayaran berhasil
-    return redirect()->route('admin.invoice', ['id' => $pesanan->id])->with('success', 'Pembayaran Berhasil!');
+        // Redirect ke halaman invoice setelah pembayaran berhasil
+        return redirect()->route('admin.invoice', ['id' => $pesanan->id])->with('success', 'Pembayaran Berhasil!');
     }
 
     // Menampilkan pelacakan status pesanan
@@ -92,5 +94,37 @@ class PesananController extends Controller
     {
         $pesanans = Pesanan::all(); 
         return view('admin.pelacakan-status', compact('pesanans'));
+    }
+
+    // Update status pesanan
+    public function updateStatus(Request $request, $id)
+    {
+        $request->validate([
+            'nama_pelanggan' => 'required',
+            'tgl_order' => 'required|date',
+            'jenis_paket' => 'required',
+            'berat_kg' => 'required|numeric',
+            'status' => 'required',
+            'payment_status' => 'required'
+        ]);
+
+        $pesanan = Pesanan::findOrFail($id);
+        $pesanan->update([
+            'nama_pelanggan' => $request->nama_pelanggan,
+            'tgl_order' => $request->tgl_order,
+            'jenis_paket' => $request->jenis_paket,
+            'berat_kg' => $request->berat_kg,
+            'status' => $request->status,
+            'payment_status' => $request->payment_status
+        ]);
+
+        return redirect()->route('pelacakan.status')->with('success', 'Status pesanan berhasil diperbarui!');
+    }
+
+    // Menampilkan pelacakan status untuk customer
+    public function customerLacakPesanan()
+    {
+        $pesanans = Pesanan::all(); 
+        return view('customer.lacak-pesanan', compact('pesanans'));
     }
 }

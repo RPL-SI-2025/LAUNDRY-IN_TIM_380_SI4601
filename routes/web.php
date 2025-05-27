@@ -6,6 +6,7 @@ use App\Http\Controllers\PesananController;
 use App\Http\Controllers\OutletController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VoucherController;
+use App\Http\Controllers\CustomerController;
 
 // Public Routes
 Route::get('/', [AuthController::class, 'showLogin'])->name('login');
@@ -37,6 +38,9 @@ Route::middleware('auth')->group(function() {
     Route::post('/outlets/{outlet}/favorite', [OutletController::class, 'toggleFavorite'])->name('outlets.toggleFavorite');
     Route::get('/favorite-outlets', [OutletController::class, 'favoriteOutlets'])->name('favorite.outlets');
     Route::get('/outlets/{outlet}', [OutletController::class, 'show'])->name('outlets.show');
+
+    // Customer Lacak Pesanan Route
+    Route::get('/lacak-pesanan', [PesananController::class, 'customerLacakPesanan'])->name('customer.lacak-pesanan');
 });
 
 // Admin Routes
@@ -53,15 +57,14 @@ Route::middleware('auth')->group(function() {
     Route::get('/tampil-pesanan', [PesananController::class, 'index'])->name('input.pesanan');
     Route::get('/pesanan/detail/{id}', [PesananController::class, 'show'])->name('pesanan.detail');
     Route::delete('/pesanan/hapus/{id}', [PesananController::class, 'destroy'])->name('pesanan.hapus');
+    Route::put('/pesanan/update-status/{id}', [PesananController::class, 'updateStatus'])->name('pesanan.update-status');
 
     // Input Outlet Routes
     Route::get('/input-outlet', [OutletController::class, 'create'])->name('input.outlet');
     Route::post('/input-outlet', [OutletController::class, 'store'])->name('input.outlet.store');
 
     // Pelacakan Status Routes
-    Route::get('/pelacakan-status', function() {
-        return view('admin.pelacakan-status');
-    })->name('pelacakan.status');
+    Route::get('/pelacakan-status', [PesananController::class, 'pelacakanStatus'])->name('pelacakan.status');
 });
 
 // Input Pesanan Routes
@@ -95,3 +98,5 @@ Route::middleware('auth')->group(function() {
     Route::get('/vouchers', [VoucherController::class, 'showAvailable'])->name('vouchers.available');
     Route::post('/vouchers/{voucher}/claim', [VoucherController::class, 'claim'])->name('vouchers.claim');
 });
+
+Route::resource('customers', CustomerController::class);
