@@ -52,6 +52,19 @@
     </div>
 </div>
 
+<!-- Modal Notifikasi Real-time -->
+<div id="notifModal" class="modal" tabindex="-1" style="display:none; background:rgba(0,0,0,0.5);">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" style="text-align:center;">
+      <div class="modal-body">
+        <h5 id="notifModalMessage"></h5>
+        <button onclick="document.getElementById('notifModal').style.display='none'" class="btn btn-secondary">No</button>
+        <button onclick="document.getElementById('notifModal').style.display='none'" class="btn btn-danger">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <style>
 .search-box {
     max-width: 300px;
@@ -106,5 +119,22 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+</script>
+
+<script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/laravel-echo/1.11.3/echo.iife.js"></script>
+<script>
+window.Echo = new Echo({
+    broadcaster: 'pusher',
+    key: '{{ env('PUSHER_APP_KEY') }}',
+    cluster: '{{ env('PUSHER_APP_CLUSTER') }}',
+    forceTLS: true
+});
+
+window.Echo.private('user.{{ auth()->id() }}')
+    .listen('PesananStatusUpdated', (e) => {
+        document.getElementById('notifModalMessage').innerText = e.message;
+        document.getElementById('notifModal').style.display = 'block';
+    });
 </script>
 @endsection 
