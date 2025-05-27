@@ -59,9 +59,28 @@ class ProfileController extends Controller
             $validatedData['image'] = 'uploads/outlets/' . $imageName;
         }
 
+        // Handle layanan_detail
+        if ($request->has('layanan_detail')) {
+            $namaArr = $request->input('layanan_detail.nama', []);
+            $deskArr = $request->input('layanan_detail.deskripsi', []);
+            $layananDetail = [];
+            foreach ($namaArr as $i => $nama) {
+                if (trim($nama) !== '' && isset($deskArr[$i])) {
+                    $layananDetail[] = [
+                        'nama' => $nama,
+                        'deskripsi' => $deskArr[$i]
+                    ];
+                }
+            }
+            $validatedData['layanan_detail'] = json_encode($layananDetail, JSON_UNESCAPED_UNICODE);
+        }
+
         $outlet->update($validatedData);
 
-        return redirect()->back()->with('success', 'Data outlet berhasil diperbarui');
+        // Ambil ulang data outlet dari database (opsional, untuk memastikan update)
+        // $outlet = Outlet::where('user_id', $user->id)->first();
+
+        return redirect()->route('profile')->with('success', 'Data outlet berhasil diperbarui');
     }
 
     public function delete()

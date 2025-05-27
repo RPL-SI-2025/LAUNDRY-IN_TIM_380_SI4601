@@ -72,8 +72,7 @@
                             <input type="text" class="form-control" name="nama_outlet" value="{{ $outlet['nama_outlet'] }}">
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label fw-semibold">Layanan Laundry</label>
-                            <input type="text" class="form-control" name="layanan_laundry" value="{{ $outlet['layanan_laundry'] }}">
+                            <label class="form-label fw-semibold">Layanan Outlet</label>
                         </div>
                         <div class="col-12">
                             <label class="form-label fw-semibold">Deskripsi Outlet</label>
@@ -86,6 +85,42 @@
                         <div class="col-md-6">
                             <label class="form-label fw-semibold">Alamat</label>
                             <input type="text" class="form-control" name="alamat_outlet" value="{{ $outlet['alamat_outlet'] }}">
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label fw-semibold">Layanan Outlet</label>
+                            <div id="layanan-list">
+                                @php
+                                    $layananDetail = isset($outlet['layanan_detail']) && $outlet['layanan_detail'] ? json_decode($outlet['layanan_detail'], true) : [];
+                                @endphp
+                                @if(empty($layananDetail))
+                                    <div class="row mb-2 layanan-item">
+                                        <div class="col-md-5 mb-2 mb-md-0">
+                                            <input type="text" class="form-control" name="layanan_detail[nama][]" placeholder="Nama Layanan" required>
+                                        </div>
+                                        <div class="col-md-6 mb-2 mb-md-0">
+                                            <input type="text" class="form-control" name="layanan_detail[deskripsi][]" placeholder="Deskripsi Layanan" required>
+                                        </div>
+                                        <div class="col-md-1 d-flex align-items-center">
+                                            <button type="button" class="btn btn-danger btn-sm remove-layanan" title="Hapus Layanan">&times;</button>
+                                        </div>
+                                    </div>
+                                @else
+                                    @foreach($layananDetail as $i => $layanan)
+                                    <div class="row mb-2 layanan-item">
+                                        <div class="col-md-5 mb-2 mb-md-0">
+                                            <input type="text" class="form-control" name="layanan_detail[nama][]" value="{{ $layanan['nama'] }}" placeholder="Nama Layanan" required>
+                                        </div>
+                                        <div class="col-md-6 mb-2 mb-md-0">
+                                            <input type="text" class="form-control" name="layanan_detail[deskripsi][]" value="{{ $layanan['deskripsi'] }}" placeholder="Deskripsi Layanan" required>
+                                        </div>
+                                        <div class="col-md-1 d-flex align-items-center">
+                                            <button type="button" class="btn btn-danger btn-sm remove-layanan" title="Hapus Layanan">&times;</button>
+                                        </div>
+                                    </div>
+                                    @endforeach
+                                @endif
+                            </div>
+                            <button type="button" class="btn btn-success btn-sm mt-2" id="add-layanan">Tambah Layanan</button>
                         </div>
                     </div>
                 </form>
@@ -101,8 +136,17 @@
                         </div>
                         <div class="col-md-6">
                             <div class="card bg-light border-0 rounded-3 p-3 h-100">
-                                <h6 class="text-muted">Layanan</h6>
-                                <p class="fw-semibold">{{ $outlet['layanan_laundry'] }}</p>
+                                <h6 class="text-muted">Layanan Outlet</h6>
+                                <p class="fw-semibold">
+                                    @php
+                                        $layananDetail = isset($outlet['layanan_detail']) && $outlet['layanan_detail'] ? json_decode($outlet['layanan_detail'], true) : [];
+                                    @endphp
+                                    @if(!empty($layananDetail))
+                                        {{ collect($layananDetail)->pluck('nama')->implode(', ') }}
+                                    @else
+                                        -
+                                    @endif
+                                </p>
                             </div>
                         </div>
                         <div class="col-12">
@@ -192,6 +236,31 @@ document.addEventListener('DOMContentLoaded', function () {
         editButton.classList.remove('d-none');
         document.getElementById('preview-image').src = '{{ isset($outlet["image"]) ? asset($outlet["image"]) : asset("gambar/icon.png") }}';
         updateForm.reset();
+    });
+
+    // Layanan dinamis
+    const layananList = document.getElementById('layanan-list');
+    document.getElementById('add-layanan').addEventListener('click', function() {
+        const layananItem = document.createElement('div');
+        layananItem.className = 'row mb-2 layanan-item';
+        layananItem.innerHTML = `
+            <div class="col-md-5 mb-2 mb-md-0">
+                <input type="text" class="form-control" name="layanan_detail[nama][]" placeholder="Nama Layanan" required>
+            </div>
+            <div class="col-md-6 mb-2 mb-md-0">
+                <input type="text" class="form-control" name="layanan_detail[deskripsi][]" placeholder="Deskripsi Layanan" required>
+            </div>
+            <div class="col-md-1 d-flex align-items-center">
+                <button type="button" class="btn btn-danger btn-sm remove-layanan" title="Hapus Layanan">&times;</button>
+            </div>
+        `;
+        layananList.appendChild(layananItem);
+    });
+    layananList.addEventListener('click', function(e) {
+        if (e.target.classList.contains('remove-layanan')) {
+            const item = e.target.closest('.layanan-item');
+            if (item) item.remove();
+        }
     });
 });
 </script>

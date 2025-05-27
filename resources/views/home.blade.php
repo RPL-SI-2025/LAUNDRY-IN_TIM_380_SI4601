@@ -37,49 +37,23 @@
 <div class="container-fluid px-5 pb-5">
   <div class="d-flex justify-content-between align-items-center mb-4">
     <h3 class="fw-bold">Outlet</h3>
-    <a href="{{ url('outlet') }}" class="text-decoration-none" style="color: #15858f;">See all</a>
+    <a href="{{ route('outlets.index') }}" class="text-decoration-none" style="color: #15858f;">See all</a>
   </div>
 
   <div class="row g-4 text-center">
-    <!-- Kartu Outlet 1 -->
+    @foreach($outlets as $outlet)
     <div class="col-md-4">
       <div class="card h-100 shadow" style="background-color: #15858f; color: white;">
-        <img src="{{ asset('gambar/baju5.png') }}" class="card-img-top" alt="Laundry Image">
+        <img src="{{ asset($outlet->image) }}" class="card-img-top" alt="Laundry Image">
         <div class="card-body">
-          <h5 class="card-title">FreshClean Laundry</h5>
-          <p class="card-text">FreshClean Laundry menyediakan layanan cuci kilat, satuan, dan ekspres dengan teknologi modern. Menawarkan hasil cuci bersih, wangi, dan cepat.</p>
-          <p class="card-text"><i class="fas fa-map-marker-alt"></i> Jl. Soekarno Hatta No. 45, Lowokwaru, Malang, Jawa Timur</p>
-          <a href="{{ url('about') }}" class="btn btn-warning text-white fw-bold">View Laundry</a>
+          <h5 class="card-title">{{ $outlet->nama_outlet }}</h5>
+          <p class="card-text">{{ $outlet->deskripsi_outlet }}</p>
+          <p class="card-text"><i class="fas fa-map-marker-alt"></i> {{ $outlet->alamat_outlet }}</p>
+          <a href="{{ route('outlets.show', $outlet->id) }}" class="btn btn-warning text-white fw-bold rounded">View Laundry</a>
         </div>
       </div>
     </div>
-
-    <!-- Kartu Outlet 2 -->
-    <div class="col-md-4">
-      <div class="card h-100 shadow" style="background-color: #15858f; color: white;">
-        <img src="{{ asset('gambar/baju5.png') }}" class="card-img-top" alt="Laundry Image">
-        <div class="card-body">
-          <h5 class="card-title">FreshClean Laundry</h5>
-          <p class="card-text">FreshClean Laundry menyediakan layanan cuci kilat, satuan, dan ekspres dengan teknologi modern. Menawarkan hasil cuci bersih, wangi, dan cepat.</p>
-          <p class="card-text"><i class="fas fa-map-marker-alt"></i> Jl. Soekarno Hatta No. 45, Lowokwaru, Malang, Jawa Timur</p>
-          <a href="{{ url('about') }}" class="btn btn-warning text-white fw-bold">View Laundry</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Kartu Outlet 2 -->
-    <div class="col-md-4">
-      <div class="card h-100 shadow" style="background-color: #15858f; color: white;">
-        <img src="{{ asset('gambar/baju5.png') }}" class="card-img-top" alt="Laundry Image">
-        <div class="card-body">
-          <h5 class="card-title">FreshClean Laundry</h5>
-          <p class="card-text">FreshClean Laundry menyediakan layanan cuci kilat, satuan, dan ekspres dengan teknologi modern. Menawarkan hasil cuci bersih, wangi, dan cepat.</p>
-          <p class="card-text"><i class="fas fa-map-marker-alt"></i> Jl. Soekarno Hatta No. 45, Lowokwaru, Malang, Jawa Timur</p>
-          <a href="{{ url('about') }}" class="btn btn-warning text-white fw-bold">View Laundry</a>
-        </div>
-      </div>
-    </div>
-
+    @endforeach
   </div>
 </div>
 
