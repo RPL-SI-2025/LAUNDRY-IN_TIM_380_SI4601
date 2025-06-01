@@ -225,16 +225,19 @@ body {
 }
 
 .profile-card h3 {
-    font-size: 1.125rem;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
 }
 
 .profile-card p {
-    font-size: 0.813rem;
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
 }
 
 .info-card {
     transition: all 0.3s ease;
     border: 1px solid rgba(0,0,0,0.05);
+    padding: 1.25rem !important;
 }
 
 .info-card:hover {
@@ -243,11 +246,13 @@ body {
 }
 
 .info-card h6 {
-    font-size: 0.75rem;
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
 }
 
 .info-card p {
-    font-size: 0.813rem;
+    font-size: 0.875rem;
+    margin-bottom: 0;
 }
 
 .service-card {
@@ -261,24 +266,27 @@ body {
 }
 
 .service-card h5 {
-    font-size: 0.875rem;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
 }
 
 .service-card p {
-    font-size: 0.75rem;
+    font-size: 0.875rem;
+    margin-bottom: 0;
 }
 
 .form-label {
     font-weight: 600;
-    font-size: 0.75rem;
+    font-size: 0.875rem;
     color: #495057;
+    margin-bottom: 0.5rem;
 }
 
 .form-control {
     border-radius: 0.5rem;
     border: 1px solid #dee2e6;
-    padding: 0.5rem 0.75rem;
-    font-size: 0.813rem;
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
 }
 
 .form-control:focus {
@@ -288,8 +296,8 @@ body {
 
 .btn {
     font-weight: 500;
-    font-size: 0.813rem;
-    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    padding: 0.75rem 1.25rem;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -311,8 +319,8 @@ body {
 
 .badge {
     font-weight: 500;
-    font-size: 0.75rem;
-    padding: 0.375rem 0.75rem;
+    font-size: 0.875rem;
+    padding: 0.5rem 1rem;
     display: inline-flex;
     align-items: center;
 }
@@ -320,10 +328,10 @@ body {
 .alert {
     border: none;
     border-radius: 0.5rem;
-    padding: 0.75rem 1rem;
+    padding: 1rem 1.25rem;
     display: flex;
     align-items: center;
-    font-size: 0.813rem;
+    font-size: 0.875rem;
 }
 
 .alert-info {
@@ -338,13 +346,13 @@ body {
 
 /* Improve spacing in forms */
 .row.g-4 {
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 /* Improve button alignment */
 .btn-sm {
-    padding: 0.375rem 0.75rem;
-    font-size: 0.75rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
 }
 
 /* Improve card content alignment */
@@ -356,29 +364,54 @@ body {
 /* Ensure consistent icon sizes */
 .bi {
     line-height: 1;
-    font-size: 0.875rem;
+    font-size: 1rem;
 }
 
 /* Adjust heading sizes */
 h4 {
-    font-size: 1rem;
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
 }
 
 h5 {
-    font-size: 0.875rem;
+    font-size: 1rem;
 }
 
 h6 {
-    font-size: 0.75rem;
+    font-size: 0.875rem;
 }
 
 /* Adjust icon sizes in cards */
 .info-card .bi {
-    font-size: 0.875rem;
+    font-size: 1.25rem;
 }
 
 .service-card .bi {
-    font-size: 0.875rem;
+    font-size: 1.25rem;
+}
+
+/* Adjust card spacing */
+.card {
+    margin-bottom: 1.5rem;
+}
+
+/* Adjust grid spacing */
+.g-4 {
+    gap: 1.5rem !important;
+}
+
+/* Adjust section spacing */
+.mt-5 {
+    margin-top: 3rem !important;
+}
+
+.mb-4 {
+    margin-bottom: 1.5rem !important;
+}
+
+/* Adjust info card content spacing */
+.info-card .d-flex {
+    margin-bottom: 0.75rem;
 }
 </style>
 
