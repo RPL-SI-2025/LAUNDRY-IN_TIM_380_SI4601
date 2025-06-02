@@ -13,6 +13,7 @@ class OutletFactory extends Factory
     public function definition()
     {
         return [
+            'user_id' => User::factory(),
             'nama_outlet' => $this->faker->company,
             'alamat_outlet' => $this->faker->address,
             'deskripsi_outlet' => $this->faker->paragraph,
