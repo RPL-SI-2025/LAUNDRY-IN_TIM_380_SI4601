@@ -5,32 +5,28 @@ namespace Tests\Browser;
 use App\Models\User;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
-use Illuminate\Support\Facades\Hash;
+
 
 class LoginTest extends DuskTestCase
 {
-    /**
-     * Test login dan redirect ke halaman input outlet
-     */
-    public function testUserCanLoginAndRedirectedToInputOutlet()
+   
+
+    public function testSuccessfulLoginAdmin(): void
     {
-        // Membuat user dummy
-        $user = User::create([
-            'username' => 'admin',
-            'telepon' => '08123456789',
-            'alamat' => 'Jl. Testing',
-            'password' => Hash::make('admin123'),
-        ]);
-
-        $this->browse(function (Browser $browser) use ($user) {
-            $browser->visit('/login')
-                    ->type('username', 'admin') // Sesuai dengan field pada form login
-                    ->type('password', 'admin123')
-                    ->press('@login-button') // Harus sesuai dengan atribut dusk di blade
-                    ->assertPathIs('/input-outlet'); // Sesuaikan dengan redirect setelah login
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/') // Mengunjungi halaman login
+                    ->pause(2000)
+                    ->assertSee('Login')
+                    ->press('Login')
+                    ->pause(2000)
+                    ->assertPathIs('/')
+                    ->type('username', 'admin2') // Mengisi field username
+                    ->type('password', 'admin2') // Mengisi field password
+                    ->press('Login')// Klik tombol Login
+                    ->pause(2000)
+                    ->assertPathIs('/admin/home') // Redirect ke homepage untuk customer
+                    ->pause(1000);
         });
-
-        // Hapus user setelah test (opsional)
-        $user->delete();
     }
+
 }
